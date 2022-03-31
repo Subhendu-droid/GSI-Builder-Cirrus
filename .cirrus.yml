@@ -4,8 +4,10 @@ env:
 task:
   name: "Bobo-Bot"
   timeout_in: 240m  
-  container:
-      image: marvelmathesh/docker:rom
+  compute_engine_instance:
+      image_project: cirrus-images
+      image: family/docker-builder
+      platform: linux
       cpu: 8
       memory: 32G
 
