@@ -1,12 +1,11 @@
 env: 
-    git_token: "ENCRYPTED[!13d0365a229ce7549b135e0d6c27782d05f7e8417f533f4dcf35b9c456b55968a88d378299f9eac7c81b8ffec3766e93!]"
+    git_token: "ENCRYPTED[!a17a942695eb3d62f4a8395586cfe3f69bf9259ee9c4dbe94eed3cda627ed1703b68f74a638304bcdc6fb701283530ce!]"
 
 task:
   name: "Bobo-Bot"
-  compute_engine_instance:
-      image_project: cirrus-images
-      image: family/docker-builder
-      platform: linux
+  timeout_in: 240m  
+  container:
+      image: marvelmathesh/docker:rom
       cpu: 8
       memory: 32G
 
