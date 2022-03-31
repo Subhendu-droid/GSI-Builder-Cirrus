@@ -1,0 +1,34 @@
+env: 
+    git_token: "ENCRYPTED[!13d0365a229ce7549b135e0d6c27782d05f7e8417f533f4dcf35b9c456b55968a88d378299f9eac7c81b8ffec3766e93!]"
+
+task:
+  name: "Bobo-Bot"
+  compute_engine_instance:
+      image_project: cirrus-images
+      image: family/docker-builder
+      platform: linux
+      cpu: 8
+      memory: 32G
+
+  Get-Requirements_script:
+      - apt update && apt upgrade && echo "yes"
+      - sudo -E apt-get -qq update
+      - sudo -E apt-get -qq install bc build-essential zip curl libstdc++6 git wget python gcc clang libssl-dev rsync flex bison ccache openjdk-8-jdk expect neofetch tmux tmate aria2
+      - curl -sL https://git.io/file-transfer | sh
+
+  Clone-Tool-and-Setup:
+      - git clone --recurse-submodules https://github.com/erfanoabdi/ErfanGSIs.git -b master ErfanGSIs
+      - sudo chmod -R 0777 ErfanGSIs
+      - sudo bash ErfanGSIs/setup.sh
+
+  Get-Configs_script:
+      - java -jar Bobo.jar
+      - rm -rf configs/configs.prop && rm -rf configs/sf-creds.prop
+      - cd configs
+      - git clone https://Subhendu-droid:${git_token}@github.com/Subhendu-droid/cosmic-env PR
+      - cp PR/configs.prop configs
+      - cp PR/sf-creds.prop configs
+
+  Run-Bot_script:
+      - sudo chmod -R 0777 *
+      - sudo java -jar Bobo.jar
