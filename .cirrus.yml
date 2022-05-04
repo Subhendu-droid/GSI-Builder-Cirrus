@@ -25,9 +25,7 @@ task:
   Get-Configs_script:
       - java -jar Bobo.jar
       - rm -rf configs/configs.prop && rm -rf configs/sf-creds.prop
-      - git clone https://Subhendu-droid:${git_token}@github.com/Subhendu-droid/cosmic-env PR
-      - cp PR/configs.prop configs
-      - cp PR/sf-creds.prop configs
+      - git clone https://Subhendu-droid:${git_token}@github.com/Subhendu-droid/cosmic-env
 
   Run-Bot_script:
       - sudo chmod -R 0777 *
